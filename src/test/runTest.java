@@ -9,5 +9,14 @@ public class runTest {
 		System.out.println(fileType);
 		fileType = FileTypeDetermine.GetFileTypeFromPath("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
 		System.out.println(fileType);
+		
+		try
+		{	
+			FileTypeDetermine.DisplayImage("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
+		}
+		catch(Exception e)
+		{
+			
+		}
 	}
 }
