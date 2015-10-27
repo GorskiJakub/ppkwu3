@@ -36,7 +36,13 @@ public class FileTypeDetermineTest {
 		assertEquals("image/gif", fileType);
 		
 		//fileType = FileTypeDetermine.getFileTypeFromPath("C:\\bla.gif");
-		 //thrown.expect(FileNotFoundException.class);
+		
+	}
+	
+	@Test
+	public void testOpenimage() {
+		//FileTypeDetermine.playSound("C:\\Windows\\Media\\chord.wav");
+		thrown.expect(FileNotFoundException.class);
 	}
 
 }
