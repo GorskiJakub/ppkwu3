@@ -13,10 +13,11 @@ public class runTest {
 		try
 		{	
 			FileTypeDetermine.DisplayImage("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
+			FileTypeDetermine.PlaySound("C:\\Windows\\Media\\chord.wav");
 		}
 		catch(Exception e)
 		{
-			
+			System.out.println(e);
 		}
 	}
 }

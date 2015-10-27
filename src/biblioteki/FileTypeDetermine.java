@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,5 +48,20 @@ public class FileTypeDetermine {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
+	}
+	
+	public static void PlaySound(String path) throws Exception
+	{
+	    AudioInputStream stream;
+	    AudioFormat format;
+	    DataLine.Info info;
+	    Clip clip;
+
+	    stream = AudioSystem.getAudioInputStream(new File(path));
+	    format = stream.getFormat();
+	    info = new DataLine.Info(Clip.class, format);
+	    clip = (Clip) AudioSystem.getLine(info);
+	    clip.open(stream);
+	    clip.start();
 	}
 }
