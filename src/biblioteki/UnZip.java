@@ -6,7 +6,7 @@ import java.util.zip.*;
 
 public class UnZip {
    static final int BUFFER = 2048;
-   public static void main (String argv[]) {
+   public void unzip (String argv[]) {
       try {
          BufferedOutputStream dest = null;
          BufferedInputStream is = null;
