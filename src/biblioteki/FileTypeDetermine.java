@@ -64,4 +64,17 @@ public class FileTypeDetermine {
 	    clip.open(stream);
 	    clip.start();
 	}
+	
+	public static void PreviewFile(String path) throws Exception
+	{
+		String fileType = FileTypeDetermine.GetFileTypeFromPath(path);
+		if(fileType.contains("audio"))
+		{
+			FileTypeDetermine.PlaySound(path);
+		}
+		if(fileType.contains("image"))
+		{
+			FileTypeDetermine.DisplayImage(path);
+		}
+	}
 }
