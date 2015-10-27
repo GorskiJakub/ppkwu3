@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class FileTypeDetermine {
-	public static String GetFileTypeFromPath(String path)
+	public static String getFileTypeFromPath(String path)
 	{
 		String fileType = "Undetermined";  
 		   final File file = new File(path);  
@@ -34,7 +34,7 @@ public class FileTypeDetermine {
 		   return fileType; 
 	}
 	
-	public static void DisplayImage(String path) throws IOException
+	public static void displayImage(String path) throws IOException
 	{
 
         BufferedImage img=ImageIO.read(new File(path));
@@ -50,7 +50,7 @@ public class FileTypeDetermine {
     
 	}
 	
-	public static void PlaySound(String path) throws Exception
+	public static void playSound(String path) throws Exception
 	{
 	    AudioInputStream stream;
 	    AudioFormat format;
@@ -65,16 +65,16 @@ public class FileTypeDetermine {
 	    clip.start();
 	}
 	
-	public static void PreviewFile(String path) throws Exception
+	public static void previewFile(String path) throws Exception
 	{
-		String fileType = FileTypeDetermine.GetFileTypeFromPath(path);
+		String fileType = FileTypeDetermine.getFileTypeFromPath(path);
 		if(fileType.contains("audio"))
 		{
-			FileTypeDetermine.PlaySound(path);
+			FileTypeDetermine.playSound(path);
 		}
 		if(fileType.contains("image"))
 		{
-			FileTypeDetermine.DisplayImage(path);
+			FileTypeDetermine.displayImage(path);
 		}
 	}
 }

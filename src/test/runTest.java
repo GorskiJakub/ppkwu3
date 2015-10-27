@@ -5,17 +5,17 @@ import biblioteki.*;
 public class runTest {
 	public static void main(String [] args)
 	{
-		String fileType = FileTypeDetermine.GetFileTypeFromPath("C:\\Windows\\Media\\chord.wav");
+		String fileType = FileTypeDetermine.getFileTypeFromPath("C:\\Windows\\Media\\chord.wav");
 		System.out.println(fileType);
-		fileType = FileTypeDetermine.GetFileTypeFromPath("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
+		fileType = FileTypeDetermine.getFileTypeFromPath("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
 		System.out.println(fileType);
 		
 		try
 		{	
 			//FileTypeDetermine.DisplayImage("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
-			FileTypeDetermine.PlaySound("C:\\Windows\\Media\\chord.wav");
+			FileTypeDetermine.playSound("C:\\Windows\\Media\\chord.wav");
 			
-			FileTypeDetermine.PreviewFile("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
+			FileTypeDetermine.previewFile("C:\\Windows\\Web\\Wallpaper\\Theme1\\img1.jpg");
 		}
 		catch(Exception e)
 		{
