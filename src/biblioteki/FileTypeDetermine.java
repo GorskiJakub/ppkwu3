@@ -34,6 +34,11 @@ public class FileTypeDetermine {
 		   return fileType; 
 	}
 	
+	public static boolean isEncrypted(String path, String key) throws IOException
+	{
+		return false;
+	}
+	
 	public static void displayImage(String path) throws IOException
 	{
 
