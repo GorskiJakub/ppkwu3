@@ -2,10 +2,12 @@ package lukasz;
 
 
 import java.io.FileInputStream;
+import org.apache.commons.net.ftp.FTPClient;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -13,6 +15,25 @@ import java.util.Scanner;
 public class Ftp_protocol {
 
 	private static final int BUFFER_SIZE = 4096;
+	
+	public static void new_download_Ftp() throws SocketException, IOException{
+		
+		 	FTPClient client = new FTPClient();
+		    FileOutputStream fos = null;
+
+		    client.connect("ftp.domain.com");
+		    client.login("admin", "secret");
+
+		    String filename = "sitemap.xml";
+		    fos = new FileOutputStream(filename);
+
+		    client.retrieveFile("/" + filename, fos);
+		    fos.close();
+		    client.disconnect();	
+		
+		
+	}
+	
 	
 	public static void downloadFtp(){
 		String ftpUrl = "ftp://%s:%s@%s/%s;type=i";
