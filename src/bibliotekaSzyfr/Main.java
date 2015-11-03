@@ -7,9 +7,12 @@ public class Main {
 		 	String datafile = "test.TXT";
 	        String FileName = "encryptedtext.txt";
 	        String FileName2 = "decryptedtext.txt";
-	        System.out.println("test1");
-	        Szyfr.szyfrowanie(FileName, FileName2);
-	        System.out.println("test2");
+	        String pass = "dupa";
+	        String secretID="sekret";
+	        
+	       Szyfr.szyfrowanie(FileName, pass, secretID );
+	      Szyfr.deszyfrowanie(FileName2, pass, secretID);
+	        
 	        TestCheckSum.CheckSum(datafile);
 	   
 
