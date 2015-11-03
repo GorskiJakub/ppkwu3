@@ -16,6 +16,10 @@ public class Ftp_protocol {
 
 	private static final int BUFFER_SIZE = 4096;
 	
+	
+	
+	
+	
 	public static void new_download_Ftp() throws SocketException, IOException{
 		
 		 	FTPClient client = new FTPClient();
@@ -50,6 +54,22 @@ public class Ftp_protocol {
 	    fis.close();
 	}
 	
+	public static void delete_Ftp() throws SocketException, IOException{
+		
+		 FTPClient client = new FTPClient();
+
+		 client.connect("ftp.domain.com");
+		 client.login("admin", "secret");
+		 String filename = "/testing/data.txt";
+		 boolean deleted = client.deleteFile(filename);
+		 if (deleted) {
+		    System.out.println("File deleted...");
+		 }
+
+		 client.logout();
+		 client.disconnect();
+		
+	}
 	
 	
 	public static void downloadFtp(){
