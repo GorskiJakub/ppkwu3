@@ -154,9 +154,5 @@ public class Ftp_protocol {
 		
 	}
  
-    public static void main(String[] args) {
-    	
-
-        
-    }
+    
 }
