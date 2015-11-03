@@ -35,6 +35,23 @@ public class Ftp_protocol {
 	}
 	
 	
+	public static void new_upload_Ftp() throws SocketException, IOException
+	{
+		FTPClient client = new FTPClient();
+	    FileInputStream fis = null;
+
+	    client.connect("ftp.domain.com");
+	    client.login("admin", "secret");
+
+	    String filename = "Touch.dat";
+	    fis = new FileInputStream(filename);
+	    client.storeFile(filename, fis);
+	    client.logout();
+	    fis.close();
+	}
+	
+	
+	
 	public static void downloadFtp(){
 		String ftpUrl = "ftp://%s:%s@%s/%s;type=i";
         Scanner input = new Scanner(System.in);
