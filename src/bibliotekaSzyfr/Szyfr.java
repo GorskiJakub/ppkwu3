@@ -10,7 +10,7 @@ import javax.crypto.*;
 
 public class Szyfr {
 
-	public static String szyfrowanie(String FileName1, String Filename2) throws InvalidKeyException, IOException,
+	public static void szyfrowanie(String FileName1, String Filename2) throws InvalidKeyException, IOException,
 			IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 
 		String plik1 = "encryptedtext.txt";
@@ -23,7 +23,7 @@ public class Szyfr {
 
 		Cipher AesCipher = Cipher.getInstance("AES");
 
-		byte[] byteText = "Your Plain Text Here".getBytes();
+		byte[] byteText = "tekst".getBytes();
 
 		AesCipher.init(Cipher.ENCRYPT_MODE, SecKey);
 		byte[] byteCipherText = AesCipher.doFinal(byteText);
@@ -34,6 +34,5 @@ public class Szyfr {
 		AesCipher.init(Cipher.DECRYPT_MODE, SecKey);
 		byte[] bytePlainText = AesCipher.doFinal(cipherText);
 		Files.write(Paths.get(plik2), bytePlainText);
-		return "udalo sie";
 	}
 }
