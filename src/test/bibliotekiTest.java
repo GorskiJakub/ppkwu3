@@ -16,7 +16,7 @@ public class bibliotekiTest {
 		HttpFile hf = new HttpFile(new URL("https://jarekprzygodzki.wordpress.com/"));
 		String content = new String(hf.getData(), hf.getEncoding());
 
-		assert
+		//assert
 	}
 
 }
