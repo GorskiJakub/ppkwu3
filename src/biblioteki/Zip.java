@@ -4,12 +4,14 @@ import java.io.*;
 import java.util.zip.*;
 
 public class Zip {
+	String path;
 	static final int BUFFER = 2048;
 
-	public Zip(String argv[]) {
+	public Zip(String path) {
+		this.path = path;
 		try {
 			BufferedInputStream origin = null;
-			FileOutputStream dest = new FileOutputStream("c:\\zip\\myfigs.zip");
+			FileOutputStream dest = new FileOutputStream(path);
 			ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 			byte data[] = new byte[BUFFER];
 			File f = new File(".");

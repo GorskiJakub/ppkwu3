@@ -5,14 +5,16 @@ import java.util.*;
 import java.util.zip.*;
 
 public class UnZip {
+	String path;
 	static final int BUFFER = 2048;
 
-	public void unzip(String argv[]) {
+	public void unzip(String path) {
+		this.path = path;
 		try {
 			BufferedOutputStream dest = null;
 			BufferedInputStream is = null;
 			ZipEntry entry;
-			ZipFile zipfile = new ZipFile(argv[0]);
+			ZipFile zipfile = new ZipFile(path);
 			Enumeration e = zipfile.entries();
 			while (e.hasMoreElements()) {
 				entry = (ZipEntry) e.nextElement();
