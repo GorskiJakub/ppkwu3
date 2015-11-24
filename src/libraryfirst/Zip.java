@@ -1,4 +1,4 @@
-package biblioteki;
+package libraryfirst;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,8 +16,8 @@ public class Zip {
 	private static ZipEntry zipEntry;
 	private static FileInputStream fileInput;
 	
-	public static void compressFile(String path) {
-		newZip(new File(path), "C:\\myDownloader\\"+ date.now() +".zip");
+	public static void compress(String path) {
+		newZip(new File(path), "C:\\tmpDownload\\"+ date.now() +".zip");
 	}
 	
 	private static void newZip(File file, String zipFileName) {
@@ -29,9 +29,9 @@ public class Zip {
             zipOutput.putNextEntry(zipEntry);
             fileInput = new FileInputStream(file);
             byte[] buffer = new byte[1024];
-            int len;
-            while ((len = fileInput.read(buffer)) > 0) {
-                zipOutput.write(buffer, 0, len);
+            int length;
+            while ((length = fileInput.read(buffer)) > 0) {
+                zipOutput.write(buffer, 0, length);
             }
            
             zipOutput.closeEntry();

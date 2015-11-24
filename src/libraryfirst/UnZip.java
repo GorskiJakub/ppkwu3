@@ -1,4 +1,4 @@
-package biblioteki;
+package libraryfirst;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,11 +13,11 @@ public class UnZip {
 	private static ZipEntry zipEntry;
 	private static FileOutputStream fileOutput;
 	
-	public static void decompressFile(String zipFile, String path) throws IOException {
+	public static void decompress(String zipFile, String path) throws IOException {
 		
 		int len;
 		String destination = path;
-	    byte[] buf = new byte[1024];
+	    byte[] buffer = new byte[1024];
 	    
 	    zipInput = new ZipInputStream(new FileInputStream(zipFile));
 	    zipEntry = zipInput.getNextEntry();
@@ -35,8 +35,8 @@ public class UnZip {
 	      
 	      fileOutput = new FileOutputStream(destination);
 	      	      
-	      while ((len = zipInput.read(buf, 0, 1024)) > -1){
-	        fileOutput.write(buf, 0, len);
+	      while ((len = zipInput.read(buffer, 0, 1024)) > -1){
+	        fileOutput.write(buffer, 0, len);
 	      }
 	      
 	      fileOutput.close();

@@ -1,4 +1,4 @@
-package biblioteki;
+package libraryfirst;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
