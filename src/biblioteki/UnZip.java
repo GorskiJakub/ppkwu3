@@ -1,38 +1,49 @@
 package biblioteki;
 
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class UnZip {
-	String path;
-	static final int BUFFER = 2048;
 
-	public void unzip(String path) {
-		this.path = path;
-		try {
-			BufferedOutputStream dest = null;
-			BufferedInputStream is = null;
-			ZipEntry entry;
-			ZipFile zipfile = new ZipFile(path);
-			Enumeration e = zipfile.entries();
-			while (e.hasMoreElements()) {
-				entry = (ZipEntry) e.nextElement();
-				System.out.println("Extracting: " + entry);
-				is = new BufferedInputStream(zipfile.getInputStream(entry));
-				int count;
-				byte data[] = new byte[BUFFER];
-				FileOutputStream fos = new FileOutputStream(entry.getName());
-				dest = new BufferedOutputStream(fos, BUFFER);
-				while ((count = is.read(data, 0, BUFFER)) != -1) {
-					dest.write(data, 0, count);
-				}
-				dest.flush();
-				dest.close();
-				is.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static ZipInputStream zipInput = null;
+	private static ZipEntry zipEntry;
+	private static FileOutputStream fileOutput;
+	
+	public static void decompressFile(String zipFile, String path) throws IOException {
+		
+		int len;
+		String destination = path;
+	    byte[] buf = new byte[1024];
+	    
+	    zipInput = new ZipInputStream(new FileInputStream(zipFile));
+	    zipEntry = zipInput.getNextEntry();
+	   
+	    while (zipEntry != null) {
+	      String entryName = zipEntry.getName();
+	      
+	      File newFile = new File(entryName);
+	      String directory = newFile.getParent();
+
+	      if (directory == null) {
+	        if (newFile.isDirectory())
+	          break;
+	      }
+	      
+	      fileOutput = new FileOutputStream(destination);
+	      	      
+	      while ((len = zipInput.read(buf, 0, 1024)) > -1){
+	        fileOutput.write(buf, 0, len);
+	      }
+	      
+	      fileOutput.close();
+	      zipInput.closeEntry();
+	      zipEntry = zipInput.getNextEntry();
+	    }
+	    
+	    zipInput.close();
 	}
 }

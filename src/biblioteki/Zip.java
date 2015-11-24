@@ -1,37 +1,48 @@
 package biblioteki;
 
-import java.io.*;
-import java.util.zip.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class Zip {
-	String path;
-	static final int BUFFER = 2048;
 
-	public Zip(String path) {
-		this.path = path;
-		try {
-			BufferedInputStream origin = null;
-			FileOutputStream dest = new FileOutputStream(path);
-			ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-			byte data[] = new byte[BUFFER];
-			File f = new File(".");
-			String files[] = f.list();
-
-			for (int i = 0; i < files.length; i++) {
-				System.out.println("Adding: " + files[i]);
-				FileInputStream fi = new FileInputStream(files[i]);
-				origin = new BufferedInputStream(fi, BUFFER);
-				ZipEntry entry = new ZipEntry(files[i]);
-				out.putNextEntry(entry);
-				int count;
-				while ((count = origin.read(data, 0, BUFFER)) != -1) {
-					out.write(data, 0, count);
-				}
-				origin.close();
-			}
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static LocalDate date;
+	private static FileOutputStream fileOutput;
+	private static ZipOutputStream zipOutput;
+	private static ZipEntry zipEntry;
+	private static FileInputStream fileInput;
+	
+	public static void compressFile(String path) {
+		newZip(new File(path), "C:\\myDownloader\\"+ date.now() +".zip");
 	}
+	
+	private static void newZip(File file, String zipFileName) {
+        try {
+            
+            fileOutput = new FileOutputStream(zipFileName);
+            zipOutput = new ZipOutputStream(fileOutput);
+            zipEntry = new ZipEntry(file.getName());
+            zipOutput.putNextEntry(zipEntry);
+            fileInput = new FileInputStream(file);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = fileInput.read(buffer)) > 0) {
+                zipOutput.write(buffer, 0, len);
+            }
+           
+            zipOutput.closeEntry();
+            zipOutput.close();
+            fileInput.close();
+            fileOutput.close();
+            System.out.println(file.getCanonicalPath()+" is zipped to "+zipFileName);
+             
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
+    }
 }
