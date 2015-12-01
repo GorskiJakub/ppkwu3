@@ -24,14 +24,37 @@ public class Ftp_protocol {
 		
 		 	FTPClient client = new FTPClient();
 		    FileOutputStream fos = null;
+		    
+		    
+		    Scanner input = new Scanner(System.in);
+	        System.out.println("Podaj adres host:");
+	        String host = input.nextLine();
+	        //String host = "www.yourserver.com";
+	        System.out.println("Podaj usera:");
+	        String user = input.nextLine();
+	        //String user = "tom";
+	        System.out.println("Podaj haslo:");
+	        String pass = input.nextLine();
+	        //String pass = "secret";
+	        System.out.println("Podaj sciezke pliku:");
+	        String filename = input.nextLine();
 
-		    client.connect("ftp.domain.com");
+		    /*client.connect("ftp.domain.com");
 		    client.login("admin", "secret");
 
 		    String filename = "sitemap.xml";
 		    fos = new FileOutputStream(filename);
 
+		    client.retrieveFile("/" + filename, fos);*/
+		    
+		    client.connect(host);
+		    client.login(user, pass);
+
+		  
+		    fos = new FileOutputStream(filename);
+
 		    client.retrieveFile("/" + filename, fos);
+		    
 		    fos.close();
 		    client.disconnect();	
 		
@@ -43,13 +66,38 @@ public class Ftp_protocol {
 	{
 		FTPClient client = new FTPClient();
 	    FileInputStream fis = null;
+	    
+	    
+	    
+	    Scanner input = new Scanner(System.in);
+        System.out.println("Podaj adres host:");
+        String host = input.nextLine();
+        //String host = "www.yourserver.com";
+        System.out.println("Podaj usera:");
+        String user = input.nextLine();
+        //String user = "tom";
+        System.out.println("Podaj haslo:");
+        String pass = input.nextLine();
+        //String pass = "secret";
+        System.out.println("Podaj sciezke pliku:");
+        String filename = input.nextLine();
 
-	    client.connect("ftp.domain.com");
+	   /* client.connect("ftp.domain.com");
 	    client.login("admin", "secret");
 
 	    String filename = "Touch.dat";
 	    fis = new FileInputStream(filename);
+	    client.storeFile(filename, fis);*/
+	    
+	    
+	    client.connect("ftp.domain.com");
+	    client.login(user, pass);
+
+	   
+	    fis = new FileInputStream(filename);
 	    client.storeFile(filename, fis);
+	    
+	    
 	    client.logout();
 	    fis.close();
 	}
@@ -57,11 +105,35 @@ public class Ftp_protocol {
 	public static void delete_Ftp() throws SocketException, IOException{
 		
 		 FTPClient client = new FTPClient();
+		 
+		 
+		 Scanner input = new Scanner(System.in);
+	     System.out.println("Podaj adres host:");
+	     String host = input.nextLine();
+	     //String host = "www.yourserver.com";
+	     System.out.println("Podaj usera:");
+	     String user = input.nextLine();
+	     //String user = "tom";
+	     System.out.println("Podaj haslo:");
+	     String pass = input.nextLine();
+	     //String pass = "secret";
+	     System.out.println("Podaj sciezke pliku:");
+	     String filename = input.nextLine();
 
-		 client.connect("ftp.domain.com");
+		 
+		 
+		 
+
+		 /*client.connect("ftp.domain.com");
 		 client.login("admin", "secret");
 		 String filename = "/testing/data.txt";
+		 boolean deleted = client.deleteFile(filename);*/
+		 
+		 client.connect(host);
+		 client.login(user, pass);
 		 boolean deleted = client.deleteFile(filename);
+		 
+		 
 		 if (deleted) {
 		    System.out.println("File deleted...");
 		 }
